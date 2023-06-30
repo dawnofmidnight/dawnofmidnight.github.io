@@ -12,6 +12,9 @@ concurrency:
 env:
   CARGO_INCREMENTAL: 0
 
+permissions:
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
