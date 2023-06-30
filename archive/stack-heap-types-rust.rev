@@ -1,0 +1,19 @@
+slug: stack-heap-types-rust
+title: Stack and Heap Types in Rust
+date: 2023-06-30
+~~~
+
+This is how text looks here.
+
+~codeblock(
+"main.rs",
+"pub struct String {
+    vec: Vec<u8>,
+}
+
+pub struct Vec<T> {
+    ptr: NonNull<T>,
+    cap: usize,
+    len: usize,
+}"
+)

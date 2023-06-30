@@ -1,0 +1,14 @@
+[package]
+name = "reverie"
+version = "0.1.0"
+edition = "2021"
+
+[lints]
+workspace = true
+
+[dependencies]
+ariadne = "0.3.0"
+html-escape = "0.2.13"
+
+[dev-dependencies]
+insta = "1.29.0"

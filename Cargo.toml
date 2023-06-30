@@ -1,0 +1,10 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+
+[workspace.lints.rust]
+rust_2018_idioms = "deny"
+
+[workspace.lints.clippy]
+pedantic = "deny"
+cast_possible_truncation = "allow"

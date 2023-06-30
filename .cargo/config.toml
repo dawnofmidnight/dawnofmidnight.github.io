@@ -1,0 +1,2 @@
+[alias]
+reverie = "run -p server -Zlints --"
