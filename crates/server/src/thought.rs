@@ -11,7 +11,9 @@ pub struct Thought {
 
 pub fn insert_many(db: &Connection, thoughts: &[Thought]) -> Result<(), InsertError> {
     let mut stmt = db
-        .prepare("REPLACE INTO thoughts (slug, title, date, reverie, html) VALUES (?1, ?2, ?3, ?4, ?5)")
+        .prepare(
+            "REPLACE INTO thoughts (slug, title, date, reverie, html) VALUES (?1, ?2, ?3, ?4, ?5)",
+        )
         .map_err(InsertError::InvalidStmt)?;
     for thought in thoughts {
         stmt.execute((
