@@ -163,14 +163,14 @@ fn block_arg(args: &[Argument], idx: usize) -> Result<&[NodeId], Error> {
     }
 }
 
-fn ident_arg(args: &[Argument], idx: usize) -> Result<Span, Error> {
-    match &args[idx] {
-        Argument::Ident(span) => Ok(*span),
-        Argument::Inline(_, span) | Argument::Block(_, span) | Argument::String(span) => {
-            Err(Error::ExpectedIdentArg { span: *span })
-        }
-    }
-}
+// fn ident_arg(args: &[Argument], idx: usize) -> Result<Span, Error> {
+//     match &args[idx] {
+//         Argument::Ident(span) => Ok(*span),
+//         Argument::Inline(_, span) | Argument::Block(_, span) | Argument::String(span) => {
+//             Err(Error::ExpectedIdentArg { span: *span })
+//         }
+//     }
+// }
 
 fn string_arg(args: &[Argument], idx: usize) -> Result<Span, Error> {
     match &args[idx] {
