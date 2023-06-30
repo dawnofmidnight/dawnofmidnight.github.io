@@ -13,6 +13,7 @@ env:
   CARGO_INCREMENTAL: 0
 
 permissions:
+  contents: read
   id-token: write
 
 jobs:
