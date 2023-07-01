@@ -3,17 +3,91 @@ title: Stack and Heap Types in Rust
 date: 2023-06-30
 ~~~
 
-This is how text looks here.
+Note: This post currently has a bunch of ASCII diagrams. I'll replace these with much nicer images once I organize The Image Pipeline~super[TM].
+
+~aside { This post is being written as part of the RPLCS ~link([Writing Gaggle], "https://www.catmonad.xyz/writing_group/"). There's some great stuff there, go take a look! }
+
+People new to Rust, particularly those who come from languages like Python, are often confused by ~code("String")s. You often hear that ~code("String")s are on the heap. But... you can put them in structs! And those strucks are on the stack! What is this magic?
+
+Eventually, we come the conclusion that "~code("String")s are on the heap" is wrong. But... it's also right.
+
+That makes no sense. Let's turn to ~link([The Book], "https://doc.rust-lang.org/book/").
+
+~section[The Book]
+
+Chapter ~link([4.1: What Is Ownership?], "https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html") has this code:
+
+~codeblock("main.rs", "let s1 = String::from(\"hello\");")
+
+And this corresponding diagram:
+
+DIAGRAM
+
+Making sense of this diagram can be a little bit confusing. We see two different boxes. One of them has ~code("ptr"), ~code("len"), ~code("cap") fields, while the other is indexed from 0-4. Let's take a look at how ~code("String") is defined to see if we can make a little more sense of this:
 
 ~codeblock(
-"main.rs",
+"rust/library/alloc/src/string.rs",
 "pub struct String {
     vec: Vec<u8>,
-}
-
-pub struct Vec<T> {
-    ptr: NonNull<T>,
-    cap: usize,
-    len: usize,
 }"
 )
+
+Okay, that's not particularly helpful. What about ~code("Vec")?
+
+~aside { This isn't the real definition of ~code("Vec"). The real one uses a private ~code("Unique") type instead of ~code("NonNull"), and another ~code("RawVec") struct. But this simplified version is good enough for our purposes here. }
+
+~codeblock(
+"rust/library/alloc/src/vec/mod.rs",
+"pub struct Vec<T> {
+    ptr: NonNull<T>,
+    len: usize,
+    cap: usize,
+}"
+)
+
+Alright, so that's where ~code("ptr"), ~code("len"), ~code("cap") are from. Let's start with the simple ones. ~code("len") is the length of the vector, and ~code("cap") is the capacity, or the number of items that the vector currently has space for. As for ~code("ptr"), we see that it's a ~code("NonNull<T>"). The docs for ~code("NonNull") describe it as:
+
+~blockquote { \~code("*mut T") but non-zero and ~link([covariant], "https://doc.rust-lang.org/reference/subtyping.html"). }
+
+And since ~code("*mut T") is a raw pointer, we know that ~code("ptr") is a pointer to... ~i[somewhere]. But we're not sure exactly where. Let's take a look at ~code("std::vec"), which is where ~code("Vec") is documented (emphasis mine):
+
+~blockquote { A contiguous growable array type with ~b[heap-allocated contents], written ~code("Vec<T>"). }
+
+Ahhhh. So ~code("ptr") is a pointer to the heap, and back in our original diagram, with the ~code("ptr") field pointing off to another box, that box (the one on the right) was on the heap.
+
+~aside { Well, this isn't strictly true (registers, async, all the other cursed stuff I don't want to know about, etc.), but it's good enough for our purposes. }
+
+Now, we just have the left box to figure out. Since this is a little harder to find, I'll just say it outright. The left box is what's actually in the ~code("s1") variable, and all variables are on the stack, so we can determine that the left box is on the stack. Let's redraw our diagram:
+
+DIAGRAM
+
+And there's our answer! The left box is on the stack, and the right box is on the heap. Or in other words, the ~code("String") struct is on the stack, but the UTF-8 encoded contents of the string are on the heap. And that, is precisely how ~i[both] of our starting answers are correct.
+
+~section[Wait, what about ~code("Box")?]
+
+Oh, right! Let's add a ~code("Box") into our code:
+
+~codeblock("main.rs", "let s2 = Box::new(String::from(\"hello\"));")
+
+Now we get this:
+
+DIAGRAM
+
+~aside { I should probably stop using the word "box" to mean two different things. }
+
+So, now we have a new box. The documentation for ~code("Box") says:
+
+~blockquote {
+    The ~code("Box<T>") type for heap allocation.
+    \ ~link([~code("Box<T>")], "https://doc.rust-lang.org/nightly/std/boxed/struct.Box.html"), casually referred to as a ‘box’, provides the simplest form of heap allocation in Rust.
+}
+
+And it's defined as:
+
+~aside {
+    Again, we're lying a little here. Or a lot, really, given that we have the allocator and ~code("Unique"). But let's pretend we aren't.
+}
+
+~codeblock("rust/library/alloc/src/boxed.rs", "pub struct Box<T>(NonNull<T>);")
+
+And we've got our ~code("NonNull") again! 

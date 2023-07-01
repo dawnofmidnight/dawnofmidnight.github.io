@@ -42,14 +42,32 @@ impl<'b> Generator<'b> {
 
     fn command(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
         match &self.bytes[name] {
+            b"i" => self.italic(output, name, args)?,
+            b"b" => self.bold(output, name, args)?,
             b"section" => self.section(output, name, args)?,
             b"subsection" => self.subsection(output, name, args)?,
+            b"super" => self.super_(output, name, args)?,
             b"code" => self.code(output, name, args)?,
             b"link" => self.link(output, name, args)?,
             b"aside" => self.aside(output, name, args)?,
+            b"blockquote" => self.blockquote(output, name, args)?,
             b"codeblock" => self.codeblock(output, name, args)?,
             _ => todo!(),
         }
+        Ok(())
+    }
+
+    fn italic(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
+        expect_args(name, args, 1)?;
+        let node = inline_arg(args, 0)?;
+        self.one_wrapped_in(output, node, b"em")?;
+        Ok(())
+    }
+
+    fn bold(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
+        expect_args(name, args, 1)?;
+        let node = inline_arg(args, 0)?;
+        self.one_wrapped_in(output, node, b"strong  ")?;
         Ok(())
     }
 
@@ -67,10 +85,18 @@ impl<'b> Generator<'b> {
         Ok(())
     }
 
+    fn super_(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
+        expect_args(name, args, 1)?;
+        let node = inline_arg(args, 0)?;
+        self.one_wrapped_in(output, node, b"sup")?;
+        Ok(())
+    }
+
     fn code(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
         expect_args(name, args, 1)?;
-        let code = std::str::from_utf8(&self.bytes[string_arg(args, 0)?]).unwrap();
-        let escaped = html_escape::encode_text(code);
+        let code =
+            std::str::from_utf8(&self.bytes[string_arg(args, 0)?]).unwrap().replace("\\\"", "\"");
+        let escaped = html_escape::encode_text(&code);
         output.extend_from_slice(b"<code>");
         output.extend_from_slice(escaped.as_bytes());
         output.extend_from_slice(b"</code>");
@@ -80,9 +106,9 @@ impl<'b> Generator<'b> {
     fn link(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
         expect_args(name, args, 2)?;
         let text = inline_arg(args, 0)?;
-        let href = inline_arg(args, 1)?;
+        let href = string_arg(args, 1)?;
         output.extend_from_slice(b"<a href=\"");
-        self.node(output, href)?;
+        output.extend_from_slice(&self.bytes[href]);
         output.extend_from_slice(b"\">");
         self.node(output, text)?;
         output.extend_from_slice(b"</a>");
@@ -96,16 +122,26 @@ impl<'b> Generator<'b> {
         Ok(())
     }
 
+    fn blockquote(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
+        expect_args(name, args, 1)?;
+        let nodes = block_arg(args, 0)?;
+        self.many_wrapped_in(output, nodes, b"blockquote")?;
+        Ok(())
+    }
+
     fn codeblock(&self, output: &mut Vec<u8>, name: Span, args: &[Argument]) -> Result<(), Error> {
         expect_args(name, args, 2)?;
-        let file = std::str::from_utf8(&self.bytes[string_arg(args, 0)?]).unwrap();
+        let file =
+            std::str::from_utf8(&self.bytes[string_arg(args, 0)?]).unwrap().replace("\\\"", "\"");
         let Some((_, ext)) = file.rsplit_once('.') else { panic!("file name {file} has no extension") };
         let name = match ext {
             "rs" => b"Rust",
+            "txt" => b"Text",
             _ => panic!("unknown file ext {ext} in {file}"),
         };
-        let code = std::str::from_utf8(&self.bytes[string_arg(args, 1)?]).unwrap();
-        let escaped = html_escape::encode_text(code);
+        let code =
+            std::str::from_utf8(&self.bytes[string_arg(args, 1)?]).unwrap().replace("\\\"", "\"");
+        let escaped = html_escape::encode_text(&code);
         output.extend_from_slice(b"<pre><div class=\"language-tag\">");
         output.extend_from_slice(name);
         output.extend_from_slice(b" &bull; ");

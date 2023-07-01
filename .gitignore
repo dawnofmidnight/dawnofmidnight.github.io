@@ -1,3 +1,3 @@
-target/
-site/
-build/
+/target/
+/site/
+/build/

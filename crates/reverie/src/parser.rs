@@ -46,19 +46,31 @@ pub enum Argument {
     String(Span),
 }
 
+#[derive(Debug, PartialEq, Eq)]
+enum Delim {
+    Paren,
+    Bracket,
+    Brace,
+}
+
 pub struct Parser<'b> {
     ast: Ast,
     bytes: &'b [u8],
     position: u32,
+    delim_stack: Vec<Delim>,
 }
 
 impl<'b> Parser<'b> {
     pub fn new(bytes: &'b [u8]) -> Self {
-        Self { ast: Ast::new(), bytes, position: 0 }
+        Self { ast: Ast::new(), bytes, position: 0, delim_stack: Vec::new() }
     }
 
     fn at_end(&self) -> bool {
         self.position as usize == self.bytes.len()
+    }
+
+    fn previous(&mut self) -> u8 {
+        self.bytes.get(self.position as usize - 1).copied().unwrap_or(0)
     }
 
     fn peek(&mut self) -> u8 {
@@ -66,6 +78,15 @@ impl<'b> Parser<'b> {
     }
 
     fn bump(&mut self) {
+        match self.peek() {
+            b'(' => self.delim_stack.push(Delim::Paren),
+            b'[' => self.delim_stack.push(Delim::Bracket),
+            b'{' => self.delim_stack.push(Delim::Brace),
+            b')' => assert_eq!(self.delim_stack.pop(), Some(Delim::Paren)),
+            b']' => assert_eq!(self.delim_stack.pop(), Some(Delim::Bracket)),
+            b'}' => assert_eq!(self.delim_stack.pop(), Some(Delim::Brace)),
+            _ => {}
+        }
         self.position += 1;
     }
 
@@ -150,7 +171,7 @@ impl<'b> Parser<'b> {
     fn parse_string_arg(&mut self) -> Argument {
         let start = self.position;
         self.bump();
-        while self.peek() != b'"' && !self.at_end() {
+        while (self.peek() != b'"' || self.previous() == b'\\') && !self.at_end() {
             self.bump();
         }
         self.bump();
@@ -182,6 +203,7 @@ impl<'b> Parser<'b> {
     fn parse_text_section(&mut self) -> Result<Vec<NodeId>, Error> {
         let mut current_text_start = Some(self.position);
         let mut nodes = Vec::new();
+        let stack_len = self.delim_stack.len();
         while !self.at_end() {
             match self.peek() {
                 b'~' => {
@@ -199,12 +221,18 @@ impl<'b> Parser<'b> {
                     current_text_start = None;
                     break;
                 }
-                b' ' => self.bump(),
+                b')' | b']' | b'}' if self.delim_stack.len() == stack_len => {
+                    if let Some(start) = current_text_start {
+                        nodes.push(self.ast.push(Node::Text(Span::new(start, self.position))));
+                    }
+                    current_text_start = None;
+                    break;
+                }
                 _ => {
-                    self.bump();
                     if current_text_start.is_none() {
                         current_text_start = Some(self.position);
                     }
+                    self.bump();
                 }
             }
         }
@@ -216,8 +244,7 @@ impl<'b> Parser<'b> {
 
     fn parse_inline(&mut self) -> Result<NodeId, Error> {
         if self.peek() == b'~' {
-            // TODO: make this false
-            self.parse_command(true)
+            self.parse_command(false)
         } else {
             let nodes = self.parse_text_section()?;
             Ok(self.ast.push(Node::Group(nodes)))
