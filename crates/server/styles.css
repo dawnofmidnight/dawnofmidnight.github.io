@@ -35,7 +35,7 @@ body {
     grid-auto-flow: row dense;
 }
 
-@media (min-width: 90rem) {    
+@media (min-width: 960px) {
     body {
         grid-template-columns: 1fr 20rem 48rem 20rem 1fr;
     }
@@ -51,7 +51,7 @@ header {
     font-size: 1.25rem;
 }
 
-@media (min-width: 90rem) {
+@media (min-width: 960px) {
     header {
         grid-column: 3;
         border-left: 1px solid var(--border); 
@@ -74,7 +74,7 @@ main {
     padding-bottom: 6rem;
 }
 
-@media (min-width: 90rem) {
+@media (min-width: 960px) {
     main {
         grid-column: 3;
         border-left: 1px solid var(--border);
@@ -82,7 +82,7 @@ main {
     }
 }
 
-@media (max-width: 90rem) {
+@media (max-width: 960px) {
     aside {
         margin: 0 1rem 1rem 1rem;
         padding: 0.3rem 0.5rem;
@@ -91,7 +91,7 @@ main {
     }
 }
 
-@media (min-width: 90rem) {
+@media (min-width: 960px) {
     aside {
         position: absolute;
         margin-left: 48rem;
