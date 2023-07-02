@@ -21,7 +21,23 @@ Chapter ~link([4.1: What Is Ownership?], "https://doc.rust-lang.org/book/ch04-01
 
 And this corresponding diagram:
 
-DIAGRAM
+~codeblock(
+"book_diagram.txt",
+"       s1
+╭──────┬───────╮     ╭───────┬───────╮
+│ name │ value │     │ index │ value │
+├──────┼───────┤     ├───────┼───────┤
+│ ptr  │   ────┼─────┼─> 0   │   h   │
+├──────┼───────┤     ├───────┼───────┤
+│ len  │   5   │     │   1   │   e   │
+├──────┼───────┤     ├───────┼───────┤
+│ cap  │   5   │     │   2   │   l   │
+╰──────┴───────╯     ├───────┼───────┤
+                     │   3   │   l   │
+                     ├───────┼───────┤
+                     │   4   │   o   │
+                     ╰───────┴───────╯"
+)
 
 Making sense of this diagram can be a little bit confusing. We see two different boxes. One of them has ~code("ptr"), ~code("len"), ~code("cap") fields, while the other is indexed from 0-4. Let's take a look at how ~code("String") is defined to see if we can make a little more sense of this:
 
@@ -57,11 +73,30 @@ Ahhhh. So ~code("ptr") is a pointer to the heap, and back in our original diagra
 
 ~aside { Well, this isn't strictly true (registers, async, all the other cursed stuff I don't want to know about, etc.), but it's good enough for our purposes. }
 
-Now, we just have the left box to figure out. Since this is a little harder to find, I'll just say it outright. The left box is what's actually in the ~code("s1") variable, and all variables are on the stack, so we can determine that the left box is on the stack. Let's redraw our diagram:
+Now, we just have the left box to figure out. Since this is a little harder to find, I'll just say it outright. The left box is what's actually in the ~code("s1") variable, and all variables are on the stack, so we can determine that the left box is on the stack. Let's redraw our diagram with this new information:
 
-DIAGRAM
+~codeblock(
+"annotated_book_diagram.txt",
+"
+       STACK       │        HEAP
+───────────────────┼────────────────────
+        s1         │
+ ╭──────┬───────╮  │  ╭───────┬───────╮
+ │ name │ value │  │  │ index │ value │
+ ├──────┼───────┤  │  ├───────┼───────┤
+ │ ptr  │   ────┼──┼──┼─> 0   │   h   │
+ ├──────┼───────┤  │  ├───────┼───────┤
+ │ len  │   5   │  │  │   1   │   e   │
+ ├──────┼───────┤  │  ├───────┼───────┤
+ │ cap  │   5   │  │  │   2   │   l   │
+ ╰──────┴───────╯  │  ├───────┼───────┤
+                   │  │   3   │   l   │
+                   │  ├───────┼───────┤
+                   │  │   4   │   o   │
+                   │  ╰───────┴───────╯"
+)
 
-And there's our answer! The left box is on the stack, and the right box is on the heap. Or in other words, the ~code("String") struct is on the stack, but the UTF-8 encoded contents of the string are on the heap. And that, is precisely how ~i[both] of our starting answers are correct.
+And there's our answer! The left box is on the stack, and the right box is on the heap. Or in other words, the ~code("String") struct is on the stack, but the UTF-8 encoded contents of the string are on the heap. And that, is precisely how ~i[both] of our starting answers are correct. The ~code("String") struct is on the stack, but the UTF-8 bytes are on the heap.
 
 ~section[Wait, what about ~code("Box")?]
 
@@ -71,7 +106,26 @@ Oh, right! Let's add a ~code("Box") into our code:
 
 Now we get this:
 
-DIAGRAM
+~codeblock(
+"box_diagram.txt",
+"
+       STACK       │                  HEAP
+───────────────────┼─────────────────────────────────────────
+        s2         │
+ ╭──────┬───────╮  │  ╭──────┬───────╮     ╭───────┬───────╮
+ │ name │ value │  │  │ name │ value │     │ index │ value │
+ ├──────┼───────┤  │  ├──────┼───────┤     ├───────┼───────┤
+ │  0   │   ────┼──┼──┼─>ptr │   ────┼─────┼─> 0   │   h   │
+ ╰──────┴───────╯  │  ├──────┼───────┤     ├───────┼───────┤
+                   │  │  len │   5   │     │   1   │   e   │
+                   │  ├──────┼───────┤     ├───────┼───────┤
+                   │  │  cap │   5   │     │   2   │   l   │
+                   │  ╰──────┴───────╯     ├───────┼───────┤
+                   │                       │   3   │   l   │
+                   │                       ├───────┼───────┤
+                   │                       │   4   │   o   │
+                   │                       ╰───────┴───────╯"
+)
 
 ~aside { I should probably stop using the word "box" to mean two different things. }
 
@@ -84,10 +138,16 @@ So, now we have a new box. The documentation for ~code("Box") says:
 
 And it's defined as:
 
-~aside {
-    Again, we're lying a little here. Or a lot, really, given that we have the allocator and ~code("Unique"). But let's pretend we aren't.
-}
+~aside { Again, we're lying a little here. Or a lot, really, given that we have the allocator and ~code("Unique"). But let's pretend we aren't. }
 
 ~codeblock("rust/library/alloc/src/boxed.rs", "pub struct Box<T>(NonNull<T>);")
 
-And we've got our ~code("NonNull") again! 
+And we've got our ~code("NonNull") again! Now, we have a pointer on the stack (the ~code("Box") struct) pointing to a pointer on the heap (the ~code("String") struct) pointing to UTF-8 bytes somewhere else on the heap. But now we have a problem. Our original formulation, which states that the ~code("String") struct is on the stack and the UTF-8 bytes are on the heap, breaks down. Here, ~i[both] the ~code("String") struct and the UTF-8 bytes are on the heap. In different places, yes, but still on the heap.
+
+~subsection[The Realization]
+
+~aside { Yes, you may not write ~code("Box<String>") often. But it's not uncommon to box a struct with a ~code("String") in it. Or ~code("Vec<String>") is rather common. }
+
+Now, we've seen a ~code("String") on both the stack ~i[and] the heap. On the stack with a bare ~code("String") in a variable, but on the heap with a ~code("Box<String>"). We use ~code("String") as our case study here, as it's easy to get confused about the terminology around it, but this applies to any type.
+
+Ultimately, we realize something important. There is no concept of a stack- or heap-allocated type. You cannot look at a type and say "this type is on the stack" or "this type is on the heap." Because ultimately, where something is allocated is a value-level (i.e. specific to a particular instance of the type) distinction.

@@ -161,6 +161,8 @@ pre code:before {
     padding: 0.25rem 0.5rem 0.25rem 0;
     margin: 0 0.5rem 0 0;
     display: inline-block;
+    width: 2ch;
+    text-align: right;
 }
 
 pre code:nth-of-type(1):before {
