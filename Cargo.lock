@@ -6,8 +6,15 @@ version = 3
 name = "generator"
 version = "0.1.0"
 dependencies = [
+ "jotdown",
  "lexopt",
 ]
+
+[[package]]
+name = "jotdown"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b87ebc8a1c0fdfdedb65abbffb023e45ebbbfe089625f93f6f5acc56685c0abf"
 
 [[package]]
 name = "lexopt"

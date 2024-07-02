@@ -69,7 +69,7 @@
 
         devShells.default = pkgs.mkShell {
           inputsFrom = [ generator ];
-          nativeBuildInputs = [ pkgs.caddy generator ];
+          nativeBuildInputs = [ pkgs.caddy pkgs.cargo-watch generator ];
         };
       }
     );

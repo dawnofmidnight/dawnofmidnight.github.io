@@ -1,0 +1,287 @@
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 100;
+    font-style: normal;
+    src: url("/fonts/fira-sans/Thin.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 100;
+    font-style: italic;
+    src: url("/fonts/fira-sans/ThinItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 200;
+    font-style: normal;
+    src: url("/fonts/fira-sans/ExtraLight.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 200;
+    font-style: italic;
+    src: url("/fonts/fira-sans/ExtraLightItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 300;
+    font-style: normal;
+    src: url("/fonts/fira-sans/Light.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 300;
+    font-style: italic;
+    src: url("/fonts/fira-sans/LightItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+    src: url("/fonts/fira-sans/Regular.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 400;
+    font-style: italic;
+    src: url("/fonts/fira-sans/Italic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 500;
+    font-style: normal;
+    src: url("/fonts/fira-sans/Medium.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 500;
+    font-style: italic;
+    src: url("/fonts/fira-sans/MediumItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 600;
+    font-style: normal;
+    src: url("/fonts/fira-sans/SemiBold.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 600;
+    font-style: italic;
+    src: url("/fonts/fira-sans/SemiBoldItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 700;
+    font-style: normal;
+    src: url("/fonts/fira-sans/Bold.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 700;
+    font-style: italic;
+    src: url("/fonts/fira-sans/BoldItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 800;
+    font-style: normal;
+    src: url("/fonts/fira-sans/ExtraBold.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 800;
+    font-style: italic;
+    src: url("/fonts/fira-sans/ExtraBoldItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 900;
+    font-style: normal;
+    src: url("/fonts/fira-sans/Heavy.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    font-display: swap;
+    font-weight: 900;
+    font-style: italic;
+    src: url("/fonts/fira-sans/HeavyItalic.woff2") format("ttf");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 100;
+    font-style: normal;
+    src: url("/fonts/iosevka/Thin.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 100;
+    font-style: italic;
+    src: url("/fonts/iosevka/ThinItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 200;
+    font-style: normal;
+    src: url("/fonts/iosevka/ExtraLight.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 200;
+    font-style: italic;
+    src: url("/fonts/iosevka/ExtraLightItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 300;
+    font-style: normal;
+    src: url("/fonts/iosevka/Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 300;
+    font-style: italic;
+    src: url("/fonts/iosevka/LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 400;
+    font-style: normal;
+    src: url("/fonts/iosevka/Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 400;
+    font-style: italic;
+    src: url("/fonts/iosevka/Italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 500;
+    font-style: normal;
+    src: url("/fonts/iosevka/Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 500;
+    font-style: italic;
+    src: url("/fonts/iosevka/MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 600;
+    font-style: normal;
+    src: url("/fonts/iosevka/SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 600;
+    font-style: italic;
+    src: url("/fonts/iosevka/SemiBoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 700;
+    font-style: normal;
+    src: url("/fonts/iosevka/Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 700;
+    font-style: italic;
+    src: url("/fonts/iosevka/BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 800;
+    font-style: normal;
+    src: url("/fonts/iosevka/ExtraBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 800;
+    font-style: italic;
+    src: url("/fonts/iosevka/ExtraBoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 900;
+    font-style: normal;
+    src: url("/fonts/iosevka/Heavy.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Iosevka";
+    font-display: swap;
+    font-weight: 900;
+    font-style: italic;
+    src: url("/fonts/iosevka/HeavyItalic.woff2") format("woff2");
+}
