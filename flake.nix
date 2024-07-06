@@ -19,8 +19,15 @@
         pkgs = import nixpkgs { inherit system overlays; };
 
         craneLib = crane.mkLib pkgs;
-        src = craneLib.cleanCargoSource (craneLib.path ./.);
         cargoTomlInfo = craneLib.crateNameFromCargoToml { cargoToml = ./generator/Cargo.toml; };
+
+        htmlFilter = path: _type: builtins.match ".*html$" path != null;
+        cargoOrHtml = path: type: (craneLib.filterCargoSources path type) || (htmlFilter path type);
+        src = pkgs.lib.cleanSourceWith {
+          src = ./.;
+          filter = cargoOrHtml;
+          name = "source";
+        };
 
         commonArgs = {
           inherit src;
