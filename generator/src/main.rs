@@ -188,9 +188,6 @@ mod content {
     fn postprocess(source: &str) -> String {
         let mut events = jotdown::Parser::new(source).collect::<Vec<_>>();
         link_headings(&mut events);
-        for event in events.clone() {
-            println!("{event:?}");
-        }
         let html = jotdown::html::render_to_string(events.into_iter());
         include_str!("template.html").replace("{insert main here}", &html)
     }

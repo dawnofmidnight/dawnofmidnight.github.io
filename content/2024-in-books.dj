@@ -5,7 +5,7 @@ I've read in 2024 (so far, anyway).
 
 
 ::: book
-![Dark Age cover](/assets/books/dark-age.png)
+![Dark Age cover](/assets/books/dark-age.png){loading="lazy"}
 
 - ## Dark Age
 - Author: [Pierce Brown][author:brown]
@@ -13,7 +13,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Light Bringer cover](/assets/books/light-bringer.jpg)
+![Light Bringer cover](/assets/books/light-bringer.jpg){loading="lazy"}
 
 - ## Light Bringer
 - Author: [Pierce Brown][author:brown]
@@ -21,7 +21,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Mistborn: The Final Empire cover](/assets/books/mistborn-the-final-empire.png)
+![Mistborn: The Final Empire cover](/assets/books/mistborn-the-final-empire.png){loading="lazy"}
 
 - ## Mistborn: The Final Empire
 - Author: [Brandon Sanderson][author:sanderson]
@@ -29,7 +29,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![The Well of Ascension cover](/assets/books/the-well-of-ascension.png)
+![The Well of Ascension cover](/assets/books/the-well-of-ascension.png){loading="lazy"}
 
 - ## The Well of Ascension
 - Author: [Brandon Sanderson][author:sanderson]
@@ -37,7 +37,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![The Hero of Ages cover](/assets/books/the-hero-of-ages.png)
+![The Hero of Ages cover](/assets/books/the-hero-of-ages.png){loading="lazy"}
 
 - ## The Hero of Ages
 - Author: [Brandon Sanderson][author:sanderson]
@@ -45,21 +45,21 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![This Is How You Lose the Time War cover](/assets/books/this-is-how-you-lose-the-time-war.jpg)
+![This Is How You Lose the Time War cover](/assets/books/this-is-how-you-lose-the-time-war.jpg){loading="lazy"}
 
 - ## This Is How You Lose the Time War
 - Author: [Amal El-Mohtar][author:el-mohtar], [Max Gladstone][author:gladstone]
 :::
 
 ::: book
-![Elantris cover](/assets/books/elantris.jpg)
+![Elantris cover](/assets/books/elantris.jpg){loading="lazy"}
 
 - ## Elantris
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![The Way of Kings cover](/assets/books/the-way-of-kings.jpg)
+![The Way of Kings cover](/assets/books/the-way-of-kings.jpg){loading="lazy"}
 
 - ## The Way of Kings
 - Author: [Brandon Sanderson][author:sanderson]
@@ -67,14 +67,14 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Warbreaker cover](/assets/books/warbreaker.jpg)
+![Warbreaker cover](/assets/books/warbreaker.jpg){loading="lazy"}
 
 - ## Warbreaker
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![Words of Radiance cover](/assets/books/words-of-radiance.jpg)
+![Words of Radiance cover](/assets/books/words-of-radiance.jpg){loading="lazy"}
 
 - ## Words of Radiance
 - Author: [Brandon Sanderson][author:sanderson]
@@ -82,7 +82,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Edgedancer cover](/assets/books/edgedancer.jpg)
+![Edgedancer cover](/assets/books/edgedancer.jpg){loading="lazy"}
 
 - ## Edgedancer
 - Author: [Brandon Sanderson][author:sanderson]
@@ -90,7 +90,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Oathbringer cover](/assets/books/oathbringer.jpg)
+![Oathbringer cover](/assets/books/oathbringer.jpg){loading="lazy"}
 
 - ## Oathbringer
 - Author: [Brandon Sanderson][author:sanderson]
@@ -98,7 +98,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Dawnshard cover](/assets/books/dawnshard.jpg)
+![Dawnshard cover](/assets/books/dawnshard.jpg){loading="lazy"}
 
 - ## Dawnshard
 - Author: [Brandon Sanderson][author:sanderson]
@@ -106,7 +106,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Rhythm of War cover](/assets/books/rhythm-of-war.jpg)
+![Rhythm of War cover](/assets/books/rhythm-of-war.jpg){loading="lazy"}
 
 - ## Rhythm of War
 - Author: [Brandon Sanderson][author:sanderson]
@@ -114,7 +114,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![The Alloy of Law cover](/assets/books/the-alloy-of-law.png)
+![The Alloy of Law cover](/assets/books/the-alloy-of-law.png){loading="lazy"}
 
 - ## The Alloy of Law
 - Author: [Brandon Sanderson][author:sanderson]
@@ -122,7 +122,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Shadows of Self cover](/assets/books/shadows-of-self.png)
+![Shadows of Self cover](/assets/books/shadows-of-self.png){loading="lazy"}
 
 - ## Shadows of Self
 - Author: [Brandon Sanderson][author:sanderson]
@@ -130,7 +130,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![The Bands of Mourning cover](/assets/books/the-bands-of-mourning.png)
+![The Bands of Mourning cover](/assets/books/the-bands-of-mourning.png){loading="lazy"}
 
 - ## The Bands of Mourning
 - Author: [Brandon Sanderson][author:sanderson]
@@ -138,7 +138,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Mistborn: Secret History cover](/assets/books/mistborn-secret-history.png)
+![Mistborn: Secret History cover](/assets/books/mistborn-secret-history.png){loading="lazy"}
 
 - ## Mistborn: Secret History
 - Author: [Brandon Sanderson][author:sanderson]
@@ -146,7 +146,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![The Lost Metal cover](/assets/books/the-lost-metal.png)
+![The Lost Metal cover](/assets/books/the-lost-metal.png){loading="lazy"}
 
 - ## The Lost Metal
 - Author: [Brandon Sanderson][author:sanderson]
@@ -154,35 +154,35 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Arcanum Unbounded cover](/assets/books/arcanum-unbounded.jpg)
+![Arcanum Unbounded cover](/assets/books/arcanum-unbounded.jpg){loading="lazy"}
 
 - ## Arcanum Unbounded
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![Tress of the Emerald Sea cover](/assets/books/tress-of-the-emerald-sea.png)
+![Tress of the Emerald Sea cover](/assets/books/tress-of-the-emerald-sea.png){loading="lazy"}
 
 - ## Tress of the Emerald Sea
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![Yumi and the Nightmare Painter cover](/assets/books/yumi-and-the-nightmare-painter.png)
+![Yumi and the Nightmare Painter cover](/assets/books/yumi-and-the-nightmare-painter.png){loading="lazy"}
 
 - ## Yumi and the Nightmare Painter
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![The Sunlit Man cover](/assets/books/the-sunlit-man.png)
+![The Sunlit Man cover](/assets/books/the-sunlit-man.png){loading="lazy"}
 
 - ## The Sunlit Man
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![The Poppy War cover](/assets/books/the-poppy-war.jpg)
+![The Poppy War cover](/assets/books/the-poppy-war.jpg){loading="lazy"}
 
 - ## The Poppy War
 - Author: [R. F. Kuang][author:kuang]
@@ -190,7 +190,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![The Dragon Republic cover](/assets/books/the-dragon-republic.jpg)
+![The Dragon Republic cover](/assets/books/the-dragon-republic.jpg){loading="lazy"}
 
 - ## The Dragon Republic
 - Author: [R. F. Kuang][author:kuang]
@@ -198,7 +198,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![The Burning God](/assets/books/the-burning-god.jpg)
+![The Burning God](/assets/books/the-burning-god.jpg){loading="lazy"}
 
 - ## The Burning God
 - Author: [R. F. Kuang][author:kuang]
@@ -206,35 +206,35 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![Dragonsteel Prime](/assets/books/dragonsteel-prime.png)
+![Dragonsteel Prime](/assets/books/dragonsteel-prime.png){loading="lazy"}
 
 - ## Dragonsteel Prime
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![The Frugal Wizard’s Handbook for Surviving Medieval England cover](/assets/books/the-frugal-wizards-handbook-for-surviving-medieval-england.png)
+![The Frugal Wizard’s Handbook for Surviving Medieval England cover](/assets/books/the-frugal-wizards-handbook-for-surviving-medieval-england.png){loading="lazy"}
 
 - ## The Frugal Wizard’s Handbook for Surviving Medieval England
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![The Invisible Life of Addie LaRue cover](/assets/books/the-invisible-life-of-addie-larue.jpg  )
+![The Invisible Life of Addie LaRue cover](/assets/books/the-invisible-life-of-addie-larue.jpg  ){loading="lazy"}
 
 - ## The Invisible Life of Addie LaRue
 - Author: [V. E. Schwab][author:schwab]
 :::
 
 ::: book
-![The Way of Kings Prime cover](/assets/books/the-way-of-kings-prime.jpg)
+![The Way of Kings Prime cover](/assets/books/the-way-of-kings-prime.jpg){loading="lazy"}
 
 - ## The Way of Kings Prime
 - Author: [Brandon Sanderson][author:sanderson]
 :::
 
 ::: book
-![A Darker Shade of Magic cover](/assets/books/a-darker-shade-of-magic.png)
+![A Darker Shade of Magic cover](/assets/books/a-darker-shade-of-magic.png){loading="lazy"}
 
 - ## A Darker Shade of Magic
 - Author: [V. E. Schwab][author:schwab]
@@ -242,7 +242,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![A Gathering of Shadows cover](/assets/books/a-gathering-of-shadows.png)
+![A Gathering of Shadows cover](/assets/books/a-gathering-of-shadows.png){loading="lazy"}
 
 - ## A Gathering of Shadows
 - Author: [V. E. Schwab][author:schwab]
@@ -250,7 +250,7 @@ I've read in 2024 (so far, anyway).
 :::
 
 ::: book
-![A Conjuring of Light cover](/assets/books/a-conjuring-of-light.png)
+![A Conjuring of Light cover](/assets/books/a-conjuring-of-light.png){loading="lazy"}
 
 - ## A Conjuring of Light
 - Author: [V. E. Schwab][author:schwab]
