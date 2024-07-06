@@ -1,0 +1,208 @@
+:root {
+    --background: hsl(32deg, 57%, 95%);
+    --text: hsl(248deg, 19%, 40%);
+    --muted: hsl(257deg, 9%, 61%);
+    --accent-base: 343deg, 35%;
+    --accent: hsl(var(--accent-base), 55%);
+    --accent-muted: hsl(var(--accent-base), 80%);
+    --accent-focus: hsl(var(--accent-base), 40%);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: hsl(246deg, 24%, 17%);
+        --text: hsl(245deg, 50%, 91%);
+        --muted: hsl(249deg, 12%, 47%);
+        --accent-base: 343deg, 76%;
+        --accent: hsl(var(--accent-base), 68%);
+        --accent-muted: hsl(var(--accent-base), 40%);
+        --accent-focus: hsl(var(--accent-base), 75%);
+    }
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: "Fira Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+}
+
+strong {
+    font-weight: bold;
+}
+
+pre,
+code {
+    font-family: "Iosevka", monospace;
+    font-size: 1em;
+}
+
+pre {
+    border: 1px solid var(--accent-muted);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+}
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+sup {
+    top: -0.5em;
+}
+
+a {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: all 100ms ease-in-out;
+}
+
+a:hover {
+    color: var(--accent-focus);
+    text-decoration-color: var(--accent-focus);
+}
+
+p {
+    margin: 1rem 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+a:has(h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6) {
+    color: var(--text);
+    text-decoration: none;
+}
+
+a:hover:has(h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6) {
+    color: var(--text);
+}
+
+h1::after,
+h2::after,
+h3::after,
+h4::after,
+h5::after,
+h6::after {
+    content: "§";
+    display: none;
+    font-size: 0.75em;
+    margin-left: 0.5em;
+    color: var(--muted);
+}
+
+h1:hover::after,
+h2:hover::after,
+h3:hover::after,
+h4:hover::after,
+h5:hover::after,
+h6:hover::after {
+    display: inline;
+}
+
+h1 {
+    margin: 4rem 0 1rem 0;
+}
+
+h2 {
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+ul {
+    margin: 0.5rem 0;
+}
+
+main {
+    margin: 0 1rem;
+    animation: fade-in 0.5s;
+}
+
+@media (min-width: 50rem) {
+    main {
+        margin: 0 auto 4rem;
+        max-width: 48rem;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: var(--accent-muted);
+}
+
+.book:last-child {
+    margin-bottom: 0;
+}
+
+.book p {
+    margin: 0;
+}
+
+.book img {
+    margin: 0;
+    width: 6rem;
+}
+
+.book ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.book ul h2 {
+    margin: 0 0 0.5rem;
+}
+
+.book ul li {
+    margin: 0.25rem 0;
+}
