@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "Firava";
+  font-display: swap;
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("/firava.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Firava";
+  font-display: swap;
+  font-style: italic;
+  font-weight: 100 900;
+  src: url("/firava-italic.woff2") format("woff2");
+}
+
+body {
+  margin: 4rem 1.5rem;
+  max-width: 48rem;
+  background-color: #fff7f7;
+  color: #222222;
+  font-family: "Firava", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (min-width: 51rem) {
+  body {
+    margin: 4rem auto;
+  }
+}
+
+a {
+  color: #ff7777;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr {
+  margin-left: 0;
+  width: 30%;
+}
+
+::selection {
+    background-color: #ffdada;
+}
